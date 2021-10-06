@@ -31,7 +31,7 @@ def test_split_servers(get_cluster_info):
     assert backend._cache
     get_cluster_info.assert_called()
     backend._class.assert_called_once()
-    eq_ (backend._class.call_args.args, (servers,))
+    eq_ (backend._class.call_args[0], (servers,))
 
 
 @patch.object(ConfigurationEndpointClient, 'get_cluster_info')
@@ -49,7 +49,7 @@ def test_node_info_cache(get_cluster_info):
     backend.set('key2', 'val')
     backend.get('key2')
     backend._class.assert_called_once()
-    eq_(backend._class.call_args.args, (servers,))
+    eq_(backend._class.call_args[0], (servers,))
     eq_(backend._cache.get.call_count, 2)
     eq_(backend._cache.set.call_count, 2)
 
